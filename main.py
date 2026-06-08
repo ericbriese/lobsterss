@@ -1,8 +1,12 @@
+import logging
+
 import httpx
 from cachetools import TTLCache
 from fastapi import FastAPI, HTTPException
 
 from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE, MAX_PAGES
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
@@ -25,8 +29,16 @@ async def fetch_stories(source: str) -> list[dict]:
     async with httpx.AsyncClient() as client:
         for page in range(1, MAX_PAGES + 1):
             url = f"{LOBSTERS_BASE}/{source}.json"
-            response = await client.get(url, params={"page": page})
+            try:
+                response = await client.get(url, params={"page": page})
+            except httpx.RequestError as e:
+                logger.error("Request to lobste.rs failed (source=%s, page=%d): %s", source, page, e)
+                break
             if response.status_code != 200:
+                logger.warning(
+                    "lobste.rs returned %d for source=%s page=%d",
+                    response.status_code, source, page,
+                )
                 break
             page_stories = response.json()
             if not page_stories:
@@ -48,5 +60,6 @@ async def debug(source: str):
     try:
         stories = await fetch_stories(source)
     except Exception as e:
+        logger.exception("Unhandled error fetching source=%s", source)
         raise HTTPException(status_code=502, detail=str(e))
     return {"source": source, "count": len(stories), "stories": stories[:3]}
