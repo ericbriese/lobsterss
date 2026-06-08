@@ -2,13 +2,11 @@ import httpx
 from cachetools import TTLCache
 from fastapi import FastAPI, HTTPException
 
+from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE, MAX_PAGES
+
 app = FastAPI()
 
-# Cache up to 200 sources (tag combos / feed names), each for 20 minutes
-_cache: TTLCache = TTLCache(maxsize=200, ttl=1200)
-
-LOBSTERS_BASE = "https://lobste.rs"
-MAX_PAGES = 3
+_cache: TTLCache = TTLCache(maxsize=CACHE_MAX_SIZE, ttl=CACHE_TTL_SECONDS)
 
 
 async def fetch_stories(source: str) -> list[dict]:

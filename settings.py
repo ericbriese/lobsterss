@@ -1,0 +1,4 @@
+LOBSTERS_BASE = "https://lobste.rs"
+MAX_PAGES = 3
+CACHE_MAX_SIZE = 200
+CACHE_TTL_SECONDS = 1200  # 20 minutes
