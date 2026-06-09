@@ -93,14 +93,3 @@ async def docs_page():
 @app.get("/healthz")
 async def health():
     return {"status": "ok"}
-
-
-@app.get("/debug/{source:path}")
-async def debug(source: str):
-    """Temporary endpoint to inspect raw lobste.rs data."""
-    try:
-        stories = await fetch_stories(source)
-    except Exception as e:
-        logger.exception("Unhandled error fetching source=%s", source)
-        raise HTTPException(status_code=502, detail=str(e))
-    return {"source": source, "count": len(stories), "stories": stories[:3]}
