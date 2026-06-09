@@ -1,6 +1,6 @@
 import pytest
 
-from helpers import author_str, iso8601, rfc2822
+from helpers import author_str, iso8601, matches_query, rfc2822
 
 
 @pytest.mark.parametrize("date_str,expected_time,expected_offset", [
@@ -12,6 +12,30 @@ def test_rfc2822(date_str, expected_time, expected_offset):
     result = rfc2822(date_str)
     assert expected_time in result
     assert expected_offset in result
+
+
+@pytest.mark.parametrize("title,q,expected", [
+    # single term
+    ("Git internals explained",   "git",             True),
+    ("Git internals explained",   "linux",           False),
+    # case insensitive
+    ("Git internals explained",   "GIT",             True),
+    # OR
+    ("Git internals explained",   "git OR linux",    True),
+    ("Git internals explained",   "python OR linux", False),
+    # AND
+    ("Git and Linux together",    "git AND linux",   True),
+    ("Git internals explained",   "git AND linux",   False),
+])
+def test_matches_query(title, q, expected):
+    assert matches_query(title, q) == expected
+
+
+def test_matches_query_term_limit(monkeypatch):
+    import helpers
+    monkeypatch.setattr(helpers, "MAX_SEARCH_TERMS", 2)
+    # third term "linux" would match but is truncated
+    assert not matches_query("Linux kernel news", "python OR rust OR linux")
 
 
 def test_iso8601_preserves_offset():
