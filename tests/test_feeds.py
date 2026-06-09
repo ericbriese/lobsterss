@@ -74,6 +74,14 @@ def test_min_comments_excludes_low_comment_counts(fmt):
 
 
 @pytest.mark.parametrize("fmt", ["rss", "atom"])
+def test_q_filters_by_title(fmt):
+    match = make_story(title="Git internals explained")
+    no_match = make_story(title="Python packaging news")
+    tree = ET.fromstring(build_feed([match, no_match], "Test Feed", "https://example.com", fmt, None, q="git"))
+    assert len(items(tree, fmt)) == 1
+
+
+@pytest.mark.parametrize("fmt", ["rss", "atom"])
 def test_min_score_and_min_comments_both_apply(fmt):
     passes_both   = make_story(title="Passes both",    score=15, comment_count=10)
     fails_score   = make_story(title="Fails score",    score=5,  comment_count=10)

@@ -19,6 +19,7 @@ _cache: TTLCache = TTLCache(maxsize=CACHE_MAX_SIZE, ttl=CACHE_TTL_SECONDS)
 class FeedFilters:
     min_score: int | None = Query(default=None)
     min_comments: int | None = Query(default=None)
+    q: str | None = Query(default=None)
 
 
 async def fetch_stories(source: str) -> list[dict]:
@@ -63,7 +64,7 @@ async def serve_feed(
         logger.exception("Unhandled error fetching source=%s", source)
         raise HTTPException(status_code=502, detail="Failed to fetch stories from lobste.rs")
 
-    content = build_feed(stories, title, feed_url, fmt, filters.min_score, filters.min_comments)
+    content = build_feed(stories, title, feed_url, fmt, filters.min_score, filters.min_comments, filters.q)
     media_type = "application/rss+xml" if fmt == "rss" else "application/atom+xml"
     return Response(content=content, media_type=media_type)
 

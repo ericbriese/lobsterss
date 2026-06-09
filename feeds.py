@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 from typing import Literal
 import xml.etree.ElementTree as ET
 
-from helpers import author_str, description, iso8601, rfc2822
+from helpers import author_str, description, iso8601, matches_query, rfc2822
 from settings import CACHE_TTL_SECONDS
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
@@ -13,11 +13,14 @@ def _apply_filters(
     stories: list[dict],
     min_score: int | None,
     min_comments: int | None,
+    q: str | None,
 ) -> list[dict]:
     if min_score is not None:
         stories = [s for s in stories if s["score"] >= min_score]
     if min_comments is not None:
         stories = [s for s in stories if s["comment_count"] >= min_comments]
+    if q:
+        stories = [s for s in stories if matches_query(s["title"], q)]
     return stories
 
 
@@ -89,8 +92,9 @@ def build_feed(
     fmt: Literal["rss", "atom"],
     min_score: int | None,
     min_comments: int | None = None,
+    q: str | None = None,
 ) -> bytes:
-    stories = _apply_filters(stories, min_score, min_comments)
+    stories = _apply_filters(stories, min_score, min_comments, q)
     stories = sorted(stories, key=lambda s: s["created_at"], reverse=True)
 
     if fmt == "rss":

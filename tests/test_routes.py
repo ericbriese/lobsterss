@@ -52,5 +52,15 @@ def test_min_score_reduces_item_count(client, stories):
     assert filtered_items < all_items
 
 
+def test_q_reduces_item_count(client, stories):
+    with patch("main.fetch_stories", AsyncMock(return_value=stories)):
+        r_all = client.get("/newest.rss")
+        r_filtered = client.get("/newest.rss?q=python")
+
+    all_items = len(ET.fromstring(r_all.content).findall(".//item"))
+    filtered_items = len(ET.fromstring(r_filtered.content).findall(".//item"))
+    assert filtered_items < all_items
+
+
 def test_healthz(client):
     assert client.get("/healthz").status_code == 200
