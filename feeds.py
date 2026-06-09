@@ -28,7 +28,7 @@ def build_rss(stories: list[dict], title: str, feed_url: str) -> bytes:
     for story in stories:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = story["title"]
-        ET.SubElement(item, "link").text = story["url"] or story["short_id_url"]
+        ET.SubElement(item, "link").text = story["url"] or story["comments_url"]
         ET.SubElement(item, "guid").text = story["short_id_url"]
         ET.SubElement(item, "author").text = author_str(story)
         ET.SubElement(item, "pubDate").text = rfc2822(story["created_at"])
@@ -62,7 +62,7 @@ def build_atom(stories: list[dict], title: str, feed_url: str) -> bytes:
         entry = sub(feed_el, "entry")
         sub(entry, "title", story["title"])
         story_link = sub(entry, "link")
-        story_link.set("href", story["url"] or story["short_id_url"])
+        story_link.set("href", story["url"] or story["comments_url"])
         sub(entry, "id", story["short_id_url"])
         sub(entry, "published", iso8601(story["created_at"]))
         sub(entry, "updated", iso8601(story["created_at"]))
