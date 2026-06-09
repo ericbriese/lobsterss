@@ -23,7 +23,7 @@ def build_rss(stories: list[dict], title: str, feed_url: str) -> bytes:
     ET.SubElement(channel, "description").text = title
     ET.SubElement(channel, "pubDate").text = rfc2822(stories[0]["created_at"]) if stories else ""
     ET.SubElement(channel, "ttl").text = str(CACHE_TTL_SECONDS // 60)
-    ET.SubElement(channel, "generator").text = "lobsterrs"
+    ET.SubElement(channel, "generator").text = "lobsterss"
 
     for story in stories:
         item = ET.SubElement(channel, "item")
@@ -56,7 +56,7 @@ def build_atom(stories: list[dict], title: str, feed_url: str) -> bytes:
     link_el.set("rel", "self")
     updated = stories[0]["created_at"] if stories else datetime.now(timezone.utc).isoformat()
     sub(feed_el, "updated", iso8601(updated))
-    sub(feed_el, "generator", "lobsterrs")
+    sub(feed_el, "generator", "lobsterss")
 
     for story in stories:
         entry = sub(feed_el, "entry")

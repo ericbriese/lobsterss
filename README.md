@@ -1,4 +1,4 @@
-lobsterrs
+lobsterss
 ========================
 
-lobsterrs serves up customisable lobste.rs RSS feeds
+lobsterss serves up customisable lobste.rs RSS feeds
