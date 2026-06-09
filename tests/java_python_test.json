@@ -1,0 +1,472 @@
+[
+  {
+    "short_id": "mct5rz",
+    "created_at": "2026-06-08T11:29:42.000-05:00",
+    "title": "Vulnerability and malware checks in uv",
+    "url": "https://astral.sh/blog/uv-audit",
+    "score": 14,
+    "flags": 3,
+    "comment_count": 1,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "yossarian",
+    "user_is_author": true,
+    "tags": [
+      "python",
+      "security"
+    ],
+    "short_id_url": "https://lobste.rs/s/mct5rz",
+    "comments_url": "https://lobste.rs/s/mct5rz/vulnerability_malware_checks_uv"
+  },
+  {
+    "short_id": "h22iaq",
+    "created_at": "2026-06-06T14:03:31.000-05:00",
+    "title": "Running Python code in a sandbox with MicroPython and WASM",
+    "url": "https://simonwillison.net/2026/Jun/6/micropython-in-a-sandbox/",
+    "score": 6,
+    "flags": 0,
+    "comment_count": 0,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "achivetta",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "security",
+      "vibecoding",
+      "wasm"
+    ],
+    "short_id_url": "https://lobste.rs/s/h22iaq",
+    "comments_url": "https://lobste.rs/s/h22iaq/running_python_code_sandbox_with"
+  },
+  {
+    "short_id": "tmzmta",
+    "created_at": "2026-06-05T22:13:13.000-05:00",
+    "title": "An announcement from the Steering Council regarding the JIT project",
+    "url": "https://discuss.python.org/t/an-announcement-from-the-steering-council-regarding-the-jit-project/107638",
+    "score": 36,
+    "flags": 0,
+    "comment_count": 17,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "sanxiyn",
+    "user_is_author": false,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/tmzmta",
+    "comments_url": "https://lobste.rs/s/tmzmta/announcement_from_steering_council"
+  },
+  {
+    "short_id": "zpjc05",
+    "created_at": "2026-06-05T12:13:13.000-05:00",
+    "title": "Symbolica 2.0: programmable symbols for Python and Rust",
+    "url": "https://symbolica.io/posts/symbolica_2_0_release/",
+    "score": 9,
+    "flags": 0,
+    "comment_count": 3,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "mmastrac",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "rust"
+    ],
+    "short_id_url": "https://lobste.rs/s/zpjc05",
+    "comments_url": "https://lobste.rs/s/zpjc05/symbolica_2_0_programmable_symbols_for"
+  },
+  {
+    "short_id": "jx44nm",
+    "created_at": "2026-06-03T10:22:33.000-05:00",
+    "title": "Parsing XML EXIF from .avif files (plus a rant)",
+    "url": "https://sheep.horse/2026/6/parsing_xml_exif_from_.avif_files_(plus_a_rant).html",
+    "score": 27,
+    "flags": 0,
+    "comment_count": 5,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "AndrewStephens",
+    "user_is_author": true,
+    "tags": [
+      "python",
+      "web"
+    ],
+    "short_id_url": "https://lobste.rs/s/jx44nm",
+    "comments_url": "https://lobste.rs/s/jx44nm/parsing_xml_exif_from_avif_files_plus_rant"
+  },
+  {
+    "short_id": "lcldxn",
+    "created_at": "2026-06-02T05:15:20.000-05:00",
+    "title": "rustc_codegen_jvm: Rust compiler backend to emit JVM bytecode",
+    "url": "https://github.com/IntegralPilot/rustc_codegen_jvm",
+    "score": 22,
+    "flags": 0,
+    "comment_count": 0,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "vi_mi",
+    "user_is_author": false,
+    "tags": [
+      "java",
+      "rust"
+    ],
+    "short_id_url": "https://lobste.rs/s/lcldxn",
+    "comments_url": "https://lobste.rs/s/lcldxn/rustc_codegen_jvm_rust_compiler_backend"
+  },
+  {
+    "short_id": "8043lu",
+    "created_at": "2026-06-01T07:09:34.000-05:00",
+    "title": "H2JVM - A Haskell Library for writing JVM Bytecode",
+    "url": "https://discourse.haskell.org/t/h2jvm-a-haskell-library-for-writing-jvm-bytecode/14182",
+    "score": 9,
+    "flags": 0,
+    "comment_count": 1,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "Hecate",
+    "user_is_author": false,
+    "tags": [
+      "haskell",
+      "java"
+    ],
+    "short_id_url": "https://lobste.rs/s/8043lu",
+    "comments_url": "https://lobste.rs/s/8043lu/h2jvm_haskell_library_for_writing_jvm"
+  },
+  {
+    "short_id": "xvdvko",
+    "created_at": "2026-05-29T12:51:55.000-05:00",
+    "title": "CVE-2026-48710: A Maintainer's Perspective",
+    "url": "https://marcelotryle.com/blog/2026/05/28/cve-2026-48710-a-maintainers-perspective/",
+    "score": 40,
+    "flags": 1,
+    "comment_count": 6,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "gi0baro",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "security"
+    ],
+    "short_id_url": "https://lobste.rs/s/xvdvko",
+    "comments_url": "https://lobste.rs/s/xvdvko/cve_2026_48710_maintainer_s_perspective"
+  },
+  {
+    "short_id": "cmsgwo",
+    "created_at": "2026-05-27T02:32:12.000-05:00",
+    "title": "CVE-2026-48710 Starlette Host-Header Auth Bypass",
+    "url": "https://badhost.org",
+    "score": 10,
+    "flags": 0,
+    "comment_count": 5,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "hoistbypetard",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "web"
+    ],
+    "short_id_url": "https://lobste.rs/s/cmsgwo",
+    "comments_url": "https://lobste.rs/s/cmsgwo/cve_2026_48710_starlette_host_header_auth"
+  },
+  {
+    "short_id": "0ucyzn",
+    "created_at": "2026-05-25T12:23:48.000-05:00",
+    "title": "uv must be installed to build a standalone Python distribution",
+    "url": "https://github.com/astral-sh/python-build-standalone/commit/c9c40c56eb53136587f0a32382cad9e5cd8d184a",
+    "score": 0,
+    "flags": 4,
+    "comment_count": 12,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "jbeckford",
+    "user_is_author": false,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/0ucyzn",
+    "comments_url": "https://lobste.rs/s/0ucyzn/uv_must_be_installed_build_standalone"
+  },
+  {
+    "short_id": "z9lnpe",
+    "created_at": "2026-05-23T00:51:38.000-05:00",
+    "title": "SPy: an interpreter and a compiler for a statically typed variant of Python",
+    "url": "https://github.com/spylang/spy",
+    "score": 12,
+    "flags": 3,
+    "comment_count": 17,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "shalabh",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "vibecoding"
+    ],
+    "short_id_url": "https://lobste.rs/s/z9lnpe",
+    "comments_url": "https://lobste.rs/s/z9lnpe/spy_interpreter_compiler_for_statically"
+  },
+  {
+    "short_id": "5ctpnh",
+    "created_at": "2026-05-21T21:50:25.000-05:00",
+    "title": "Opaque Types in Python",
+    "url": "https://blog.glyph.im/2026/05/opaque-types-in-python.html",
+    "score": 6,
+    "flags": 0,
+    "comment_count": 0,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "ubernostrum",
+    "user_is_author": false,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/5ctpnh",
+    "comments_url": "https://lobste.rs/s/5ctpnh/opaque_types_python"
+  },
+  {
+    "short_id": "jr1uo9",
+    "created_at": "2026-05-21T18:23:12.000-05:00",
+    "title": "uv is fantastic, but its package management UX is a mess",
+    "url": "https://www.loopwerk.io/articles/2026/uv-ux-mess/",
+    "score": 13,
+    "flags": 0,
+    "comment_count": 2,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "jesseb34r",
+    "user_is_author": false,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/jr1uo9",
+    "comments_url": "https://lobste.rs/s/jr1uo9/uv_is_fantastic_its_package_management_ux"
+  },
+  {
+    "short_id": "833c7y",
+    "created_at": "2026-05-21T14:54:20.000-05:00",
+    "title": "feloxi: Real-time Celery task queue monitoring — Rust/Axum backend, Next.js dashboard, ClickHouse analytics",
+    "url": "https://github.com/thesaadmirza/feloxi",
+    "score": 0,
+    "flags": 1,
+    "comment_count": 0,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "spookylukey",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "rust"
+    ],
+    "short_id_url": "https://lobste.rs/s/833c7y",
+    "comments_url": "https://lobste.rs/s/833c7y/feloxi_real_time_celery_task_queue"
+  },
+  {
+    "short_id": "novz16",
+    "created_at": "2026-05-21T12:32:01.000-05:00",
+    "title": "Modern Compiler Construction in Python",
+    "url": "https://github.com/hwxi/CS391-2026-Summer",
+    "score": 2,
+    "flags": 0,
+    "comment_count": 2,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "janus",
+    "user_is_author": false,
+    "tags": [
+      "compilers",
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/novz16",
+    "comments_url": "https://lobste.rs/s/novz16/modern_compiler_construction_python"
+  },
+  {
+    "short_id": "n5qtds",
+    "created_at": "2026-05-21T08:16:44.000-05:00",
+    "title": "Python 3.15: features that didn't make the headlines",
+    "url": "https://blog.changs.co.uk/python-315-features-that-didnt-make-the-headlines.html",
+    "score": 38,
+    "flags": 0,
+    "comment_count": 5,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "hoistbypetard",
+    "user_is_author": false,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/n5qtds",
+    "comments_url": "https://lobste.rs/s/n5qtds/python_3_15_features_didn_t_make_headlines"
+  },
+  {
+    "short_id": "hpoydf",
+    "created_at": "2026-05-19T04:50:49.000-05:00",
+    "title": "The Windows DLL loader lock: how a Rust thread can hang your JVM",
+    "url": "https://questdb.com/blog/windows-dll-loader-lock-rust-jni-deadlock/",
+    "score": 14,
+    "flags": 0,
+    "comment_count": 5,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "jmillikin",
+    "user_is_author": false,
+    "tags": [
+      "debugging",
+      "java",
+      "rust",
+      "windows"
+    ],
+    "short_id_url": "https://lobste.rs/s/hpoydf",
+    "comments_url": "https://lobste.rs/s/hpoydf/windows_dll_loader_lock_how_rust_thread"
+  },
+  {
+    "short_id": "lynqdm",
+    "created_at": "2026-05-18T08:55:20.000-05:00",
+    "title": "De‐bloating Javascript",
+    "url": "https://github.com/naver/lispe/wiki/6.23-De%E2%80%90bloating-Javascript",
+    "score": 30,
+    "flags": 1,
+    "comment_count": 29,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "Claudius",
+    "user_is_author": true,
+    "tags": [
+      "java",
+      "lisp",
+      "wasm"
+    ],
+    "short_id_url": "https://lobste.rs/s/lynqdm",
+    "comments_url": "https://lobste.rs/s/lynqdm/de_bloating_javascript"
+  },
+  {
+    "short_id": "e06upg",
+    "created_at": "2026-05-17T01:40:43.000-05:00",
+    "title": "PyCon US 2026 Packaging Summit Recap",
+    "url": "https://discuss.python.org/t/packaging-summit-at-pycon-us-2026/106911/2",
+    "score": 5,
+    "flags": 0,
+    "comment_count": 0,
+    "description": "\u003cp\u003eJust published my notes from this year's Python Packaging Summit at PyCon US. If you've ever been curious what one of these is like from the inside: Wheel 2.0 + Zstandard, PyPI abuse vectors, conda vs pip, nab as a pip-resolver candidate. 🐍\u003c/p\u003e\n",
+    "description_plain": "Just published my notes from this year's Python Packaging Summit at PyCon US. If you've ever been curious what one of these is like from the inside: Wheel 2.0 + Zstandard, PyPI abuse vectors, conda vs pip, nab as a pip-resolver candidate. 🐍",
+    "submitter_user": "gaborjbernat",
+    "user_is_author": true,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/e06upg",
+    "comments_url": "https://lobste.rs/s/e06upg/pycon_us_2026_packaging_summit_recap"
+  },
+  {
+    "short_id": "uezaeb",
+    "created_at": "2026-05-16T17:25:20.000-05:00",
+    "title": "A checkbox to enable the Django debug toolbar",
+    "url": "https://mdk.fr/blog/django-debug-toolbar-checkbox.html",
+    "score": 1,
+    "flags": 0,
+    "comment_count": 0,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "mdk_fr",
+    "user_is_author": true,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/uezaeb",
+    "comments_url": "https://lobste.rs/s/uezaeb/checkbox_enable_django_debug_toolbar"
+  },
+  {
+    "short_id": "bxvzyy",
+    "created_at": "2026-05-15T02:02:03.000-05:00",
+    "title": "PyCon US 2026 Typing Summit Recap",
+    "url": "https://bernat.tech/posts/pycon-us-2026-typing-summit-recap/",
+    "score": 17,
+    "flags": 0,
+    "comment_count": 4,
+    "description": "\u003cp\u003eJust published my notes from this year's Python Typing Summit at PyCon US. If you've ever been curious what one of these is like from the inside: intersection types, constraint sets in ty, tensor shapes in Pyrefly, Guido on direction.\u003c/p\u003e\n",
+    "description_plain": "Just published my notes from this year's Python Typing Summit at PyCon US. If you've ever been curious what one of these is like from the inside: intersection types, constraint sets in ty, tensor shapes in Pyrefly, Guido on direction.",
+    "submitter_user": "gaborjbernat",
+    "user_is_author": true,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/bxvzyy",
+    "comments_url": "https://lobste.rs/s/bxvzyy/pycon_us_2026_typing_summit_recap"
+  },
+  {
+    "short_id": "d2rnlh",
+    "created_at": "2026-05-14T08:25:12.000-05:00",
+    "title": "Waiting for website changes in the browser",
+    "url": "https://alexwlchan.net/2026/livereload-in-browser/",
+    "score": 5,
+    "flags": 0,
+    "comment_count": 0,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "sloanelybutsurely",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "web"
+    ],
+    "short_id_url": "https://lobste.rs/s/d2rnlh",
+    "comments_url": "https://lobste.rs/s/d2rnlh/waiting_for_website_changes_browser"
+  },
+  {
+    "short_id": "nzqsjf",
+    "created_at": "2026-05-13T19:49:20.000-05:00",
+    "title": "httpx2 - Fork by Pydantic",
+    "url": "https://tildeweb.nl/~michiel/httpx2.html",
+    "score": 24,
+    "flags": 0,
+    "comment_count": 11,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "rslabbert",
+    "user_is_author": false,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/nzqsjf",
+    "comments_url": "https://lobste.rs/s/nzqsjf/httpx2_fork_by_pydantic"
+  },
+  {
+    "short_id": "qevzpl",
+    "created_at": "2026-05-13T13:51:40.000-05:00",
+    "title": "Pyrefly v1.0 is here",
+    "url": "https://pyrefly.org/blog/v1.0/",
+    "score": 13,
+    "flags": 1,
+    "comment_count": 1,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "dayanruben",
+    "user_is_author": false,
+    "tags": [
+      "python",
+      "vibecoding"
+    ],
+    "short_id_url": "https://lobste.rs/s/qevzpl",
+    "comments_url": "https://lobste.rs/s/qevzpl/pyrefly_v1_0_is_here"
+  },
+  {
+    "short_id": "v065ia",
+    "created_at": "2026-05-13T09:04:09.000-05:00",
+    "title": "Reverting the incremental GC in Python 3.14 and 3.15",
+    "url": "https://discuss.python.org/t/reverting-the-incremental-gc-in-python-3-14-and-3-15/107014",
+    "score": 9,
+    "flags": 0,
+    "comment_count": 0,
+    "description": "",
+    "description_plain": "",
+    "submitter_user": "jmillikin",
+    "user_is_author": false,
+    "tags": [
+      "python"
+    ],
+    "short_id_url": "https://lobste.rs/s/v065ia",
+    "comments_url": "https://lobste.rs/s/v065ia/reverting_incremental_gc_python_3_14_3_15"
+  }
+]
