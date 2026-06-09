@@ -9,15 +9,13 @@ ATOM_NS = "http://www.w3.org/2005/Atom"
 ET.register_namespace("", ATOM_NS)
 
 
-def _filter_and_sort(stories: list[dict], min_score: int | None) -> list[dict]:
+def _filter_score(stories: list[dict], min_score: int | None) -> list[dict]:
     if min_score is not None:
-        stories = [s for s in stories if s["score"] >= min_score]
-    return sorted(stories, key=lambda s: s["created_at"], reverse=True)
+        return [s for s in stories if s["score"] >= min_score]
+    return stories
 
 
-def build_rss(stories: list[dict], title: str, feed_url: str, min_score: int | None) -> bytes:
-    stories = _filter_and_sort(stories, min_score)
-
+def build_rss(stories: list[dict], title: str, feed_url: str) -> bytes:
     rss = ET.Element("rss", {"version": "2.0"})
     channel = ET.SubElement(rss, "channel")
     ET.SubElement(channel, "title").text = title
@@ -43,9 +41,7 @@ def build_rss(stories: list[dict], title: str, feed_url: str, min_score: int | N
     return b'<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(rss, encoding="unicode").encode("utf-8")
 
 
-def build_atom(stories: list[dict], title: str, feed_url: str, min_score: int | None) -> bytes:
-    stories = _filter_and_sort(stories, min_score)
-
+def build_atom(stories: list[dict], title: str, feed_url: str) -> bytes:
     def sub(parent, tag, text=None, **attrs):
         el = ET.SubElement(parent, f"{{{ATOM_NS}}}{tag}", attrs)
         if text is not None:
@@ -87,6 +83,9 @@ def build_feed(
     fmt: Literal["rss", "atom"],
     min_score: int | None,
 ) -> bytes:
+    stories = _filter_score(stories, min_score)
+    stories = sorted(stories, key=lambda s: s["created_at"], reverse=True)
+
     if fmt == "rss":
-        return build_rss(stories, title, feed_url, min_score)
-    return build_atom(stories, title, feed_url, min_score)
+        return build_rss(stories, title, feed_url)
+    return build_atom(stories, title, feed_url)
