@@ -51,8 +51,6 @@ def description(story: dict) -> str:
     if story.get("description"):
         parts.append(story["description"])
     parts.append(
-        f'Score: {story["score"]} | '
-        f'Comments: {story["comment_count"]} | '
-        f'<a href="{story["comments_url"]}">Comments</a>'
+        f'Score: {story["score"]} | Comments: {story["comment_count"]} | <a href="{story["comments_url"]}">Comments</a>'
     )
     return "\n".join(parts)

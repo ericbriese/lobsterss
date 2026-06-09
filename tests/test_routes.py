@@ -12,14 +12,17 @@ def client():
     return TestClient(app)
 
 
-@pytest.mark.parametrize("path,content_type", [
-    ("/newest.rss",         "application/rss+xml"),
-    ("/newest.atom",        "application/atom+xml"),
-    ("/hottest.rss",        "application/rss+xml"),
-    ("/hottest.atom",       "application/atom+xml"),
-    ("/t/python,java.rss",  "application/rss+xml"),
-    ("/t/python,java.atom", "application/atom+xml"),
-])
+@pytest.mark.parametrize(
+    "path,content_type",
+    [
+        ("/newest.rss", "application/rss+xml"),
+        ("/newest.atom", "application/atom+xml"),
+        ("/hottest.rss", "application/rss+xml"),
+        ("/hottest.atom", "application/atom+xml"),
+        ("/t/python,java.rss", "application/rss+xml"),
+        ("/t/python,java.atom", "application/atom+xml"),
+    ],
+)
 def test_feed_endpoints_return_correct_content_type(client, stories, path, content_type):
     with patch("main.fetch_stories", AsyncMock(return_value=stories)):
         r = client.get(path)

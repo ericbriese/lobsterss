@@ -61,7 +61,9 @@ def test_min_score_excludes_low_scores(fmt):
 
 @pytest.mark.parametrize("fmt", ["rss", "atom"])
 def test_no_min_score_includes_all(fmt):
-    tree = ET.fromstring(build_feed([HIGH_SCORE, LOW_SCORE, NEWER, OLDER], "Test Feed", "https://example.com", fmt, None))
+    tree = ET.fromstring(
+        build_feed([HIGH_SCORE, LOW_SCORE, NEWER, OLDER], "Test Feed", "https://example.com", fmt, None)
+    )
     assert len(items(tree, fmt)) == 4
 
 
@@ -69,7 +71,9 @@ def test_no_min_score_includes_all(fmt):
 def test_min_comments_excludes_low_comment_counts(fmt):
     few_comments = make_story(title="Few Comments", comment_count=2)
     many_comments = make_story(title="Many Comments", comment_count=20)
-    tree = ET.fromstring(build_feed([few_comments, many_comments], "Test Feed", "https://example.com", fmt, None, min_comments=10))
+    tree = ET.fromstring(
+        build_feed([few_comments, many_comments], "Test Feed", "https://example.com", fmt, None, min_comments=10)
+    )
     assert len(items(tree, fmt)) == 1
 
 
@@ -83,8 +87,8 @@ def test_q_filters_by_title(fmt):
 
 @pytest.mark.parametrize("fmt", ["rss", "atom"])
 def test_min_score_and_min_comments_both_apply(fmt):
-    passes_both   = make_story(title="Passes both",    score=15, comment_count=10)
-    fails_score   = make_story(title="Fails score",    score=5,  comment_count=10)
+    passes_both = make_story(title="Passes both", score=15, comment_count=10)
+    fails_score = make_story(title="Fails score", score=5, comment_count=10)
     fails_comments = make_story(title="Fails comments", score=15, comment_count=2)
     stories = [passes_both, fails_score, fails_comments]
     tree = ET.fromstring(build_feed(stories, "Test Feed", "https://example.com", fmt, min_score=10, min_comments=5))
@@ -125,33 +129,42 @@ def test_rss_channel_pubdate_is_newest_story():
     assert "08 Jun 2026" in channel_pubdate
 
 
-@pytest.mark.parametrize("url,user_is_author,expected_author", [
-    ("https://example.com/article", True,  "example.com by testuser"),
-    ("https://example.com/article", False, "testuser"),
-    ("",                            True,  " by testuser"),
-    ("",                            False, "testuser"),
-])
+@pytest.mark.parametrize(
+    "url,user_is_author,expected_author",
+    [
+        ("https://example.com/article", True, "example.com by testuser"),
+        ("https://example.com/article", False, "testuser"),
+        ("", True, " by testuser"),
+        ("", False, "testuser"),
+    ],
+)
 def test_rss_author(url, user_is_author, expected_author):
     story = make_story(url=url, user_is_author=user_is_author)
     tree = ET.fromstring(build_feed([story], "Test Feed", "https://example.com", "rss", None))
     assert tree.find(".//item/author").text == expected_author
 
 
-@pytest.mark.parametrize("url,expected_link", [
-    ("https://example.com/article", "https://example.com/article"),
-    ("",                            "https://lobste.rs/s/abc123/test_story"),  # falls back to comments_url
-])
+@pytest.mark.parametrize(
+    "url,expected_link",
+    [
+        ("https://example.com/article", "https://example.com/article"),
+        ("", "https://lobste.rs/s/abc123/test_story"),  # falls back to comments_url
+    ],
+)
 def test_rss_item_link(url, expected_link):
     story = make_story(url=url)
     tree = ET.fromstring(build_feed([story], "Test Feed", "https://example.com", "rss", None))
     assert tree.find(".//item/link").text == expected_link
 
 
-@pytest.mark.parametrize("url,description_text,expect_in_output", [
-    ("",                            "<p>Text post content.</p>",   True),   # text post with description
-    ("https://example.com/article", "<p>Link post discussion.</p>", True),  # link post with description
-    ("https://example.com/article", "",                             False),  # link post, no description
-])
+@pytest.mark.parametrize(
+    "url,description_text,expect_in_output",
+    [
+        ("", "<p>Text post content.</p>", True),  # text post with description
+        ("https://example.com/article", "<p>Link post discussion.</p>", True),  # link post with description
+        ("https://example.com/article", "", False),  # link post, no description
+    ],
+)
 def test_rss_description_story_text(url, description_text, expect_in_output):
     story = make_story(url=url, description=description_text)
     tree = ET.fromstring(build_feed([story], "Test Feed", "https://example.com", "rss", None))
