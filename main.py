@@ -1,15 +1,16 @@
 import logging
+from typing import Literal
 
 import httpx
 from cachetools import TTLCache
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
+from fastapi.responses import Response
 
+from feeds import build_feed
 from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE, MAX_PAGES
 
 logger = logging.getLogger(__name__)
-
 app = FastAPI()
-
 _cache: TTLCache = TTLCache(maxsize=CACHE_MAX_SIZE, ttl=CACHE_TTL_SECONDS)
 
 
@@ -47,6 +48,39 @@ async def fetch_stories(source: str) -> list[dict]:
 
     _cache[source] = stories
     return stories
+
+
+async def serve_feed(
+    source: str,
+    title: str,
+    fmt: Literal["rss", "atom"],
+    min_score: int | None,
+    feed_url: str,
+) -> Response:
+    try:
+        stories = await fetch_stories(source)
+    except Exception:
+        logger.exception("Unhandled error fetching source=%s", source)
+        raise HTTPException(status_code=502, detail="Failed to fetch stories from lobste.rs")
+
+    content = build_feed(stories, title, feed_url, fmt, min_score)
+    media_type = "application/rss+xml" if fmt == "rss" else "application/atom+xml"
+    return Response(content=content, media_type=media_type)
+
+
+@app.get("/newest.{fmt}")
+async def newest(fmt: Literal["rss", "atom"], min_score: int | None = Query(default=None)):
+    return await serve_feed("newest", "lobste.rs: newest", fmt, min_score, f"{LOBSTERS_BASE}/newest")
+
+
+@app.get("/hottest.{fmt}")
+async def hottest(fmt: Literal["rss", "atom"], min_score: int | None = Query(default=None)):
+    return await serve_feed("hottest", "lobste.rs: hottest", fmt, min_score, f"{LOBSTERS_BASE}/hottest")
+
+
+@app.get("/t/{tags}.{fmt}")
+async def by_tags(tags: str, fmt: Literal["rss", "atom"], min_score: int | None = Query(default=None)):
+    return await serve_feed(f"t/{tags}", f"lobste.rs: {tags}", fmt, min_score, f"{LOBSTERS_BASE}/t/{tags}")
 
 
 @app.get("/healthz")
