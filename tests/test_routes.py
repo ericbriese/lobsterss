@@ -32,6 +32,16 @@ def test_invalid_format_returns_422(client):
     assert r.status_code == 422
 
 
+def test_min_comments_reduces_item_count(client, stories):
+    with patch("main.fetch_stories", AsyncMock(return_value=stories)):
+        r_all = client.get("/newest.rss")
+        r_filtered = client.get("/newest.rss?min_comments=10")
+
+    all_items = len(ET.fromstring(r_all.content).findall(".//item"))
+    filtered_items = len(ET.fromstring(r_filtered.content).findall(".//item"))
+    assert filtered_items < all_items
+
+
 def test_min_score_reduces_item_count(client, stories):
     with patch("main.fetch_stories", AsyncMock(return_value=stories)):
         r_all = client.get("/newest.rss")

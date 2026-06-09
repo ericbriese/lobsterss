@@ -9,9 +9,15 @@ ATOM_NS = "http://www.w3.org/2005/Atom"
 ET.register_namespace("", ATOM_NS)
 
 
-def _filter_score(stories: list[dict], min_score: int | None) -> list[dict]:
+def _apply_filters(
+    stories: list[dict],
+    min_score: int | None,
+    min_comments: int | None,
+) -> list[dict]:
     if min_score is not None:
-        return [s for s in stories if s["score"] >= min_score]
+        stories = [s for s in stories if s["score"] >= min_score]
+    if min_comments is not None:
+        stories = [s for s in stories if s["comment_count"] >= min_comments]
     return stories
 
 
@@ -82,8 +88,9 @@ def build_feed(
     feed_url: str,
     fmt: Literal["rss", "atom"],
     min_score: int | None,
+    min_comments: int | None = None,
 ) -> bytes:
-    stories = _filter_score(stories, min_score)
+    stories = _apply_filters(stories, min_score, min_comments)
     stories = sorted(stories, key=lambda s: s["created_at"], reverse=True)
 
     if fmt == "rss":

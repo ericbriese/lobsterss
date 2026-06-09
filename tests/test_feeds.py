@@ -66,6 +66,24 @@ def test_no_min_score_includes_all(fmt):
 
 
 @pytest.mark.parametrize("fmt", ["rss", "atom"])
+def test_min_comments_excludes_low_comment_counts(fmt):
+    few_comments = make_story(title="Few Comments", comment_count=2)
+    many_comments = make_story(title="Many Comments", comment_count=20)
+    tree = ET.fromstring(build_feed([few_comments, many_comments], "Test Feed", "https://example.com", fmt, None, min_comments=10))
+    assert len(items(tree, fmt)) == 1
+
+
+@pytest.mark.parametrize("fmt", ["rss", "atom"])
+def test_min_score_and_min_comments_both_apply(fmt):
+    passes_both   = make_story(title="Passes both",    score=15, comment_count=10)
+    fails_score   = make_story(title="Fails score",    score=5,  comment_count=10)
+    fails_comments = make_story(title="Fails comments", score=15, comment_count=2)
+    stories = [passes_both, fails_score, fails_comments]
+    tree = ET.fromstring(build_feed(stories, "Test Feed", "https://example.com", fmt, min_score=10, min_comments=5))
+    assert len(items(tree, fmt)) == 1
+
+
+@pytest.mark.parametrize("fmt", ["rss", "atom"])
 def test_empty_stories_returns_valid_xml(fmt):
     result = build_feed([], "Test Feed", "https://example.com", fmt, None)
     ET.fromstring(result)
