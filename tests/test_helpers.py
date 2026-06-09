@@ -37,6 +37,9 @@ def test_rfc2822(date_str, expected_time, expected_offset):
         # symbols
         ("C++ is still relevant", "C++", True),
         ("Painting with acrylics", "C++", False),
+        # symbol-only terms: no word-boundary restriction
+        ("Foo (bar) baz", "(", True),
+        ("No parens here", "(", False),
     ],
 )
 def test_matches_query(title, q, expected):

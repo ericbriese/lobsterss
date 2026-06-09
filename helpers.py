@@ -26,8 +26,10 @@ def author_str(story: dict) -> str:
 
 
 def _term_matches(term: str, title: str) -> bool:
-    pattern = r"(?<!\w)" + re.escape(term) + r"(?!\w)"
-    return bool(re.search(pattern, title, re.IGNORECASE))
+    escaped = re.escape(term)
+    prefix = r"(?<!\w)" if re.match(r"\w", term[0]) else ""
+    suffix = r"(?!\w)" if re.match(r"\w", term[-1]) else ""
+    return bool(re.search(prefix + escaped + suffix, title, re.IGNORECASE))
 
 
 def matches_query(title: str, q: str) -> bool:
