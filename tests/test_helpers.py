@@ -26,6 +26,12 @@ def test_rfc2822(date_str, expected_time, expected_offset):
     # AND
     ("Git and Linux together",    "git AND linux",   True),
     ("Git internals explained",   "git AND linux",   False),
+    # whole-keyword: must not match substrings
+    ("Painting with acrylics",    "AI",              False),
+    ("AI safety research",        "AI",              True),
+    # symbols
+    ("C++ is still relevant",     "C++",             True),
+    ("Painting with acrylics",    "C++",             False),
 ])
 def test_matches_query(title, q, expected):
     assert matches_query(title, q) == expected
