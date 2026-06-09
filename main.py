@@ -8,7 +8,7 @@ from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.responses import Response
 
 from feeds import build_feed
-from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE, MAX_PAGES
+from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
@@ -23,7 +23,7 @@ class FeedFilters:
 
 async def fetch_stories(source: str) -> list[dict]:
     """
-    Fetch up to MAX_PAGES pages of stories from lobste.rs for the given source.
+    Fetch one page of stories from lobste.rs for the given source.
 
     source examples:
       "newest"         → /newest.json
@@ -33,26 +33,19 @@ async def fetch_stories(source: str) -> list[dict]:
     if source in _cache:
         return _cache[source]
 
-    stories = []
-    async with httpx.AsyncClient() as client:
-        for page in range(1, MAX_PAGES + 1):
-            url = f"{LOBSTERS_BASE}/{source}.json"
-            try:
-                response = await client.get(url, params={"page": page})
-            except httpx.RequestError as e:
-                logger.error("Request to lobste.rs failed (source=%s, page=%d): %s", source, page, e)
-                break
-            if response.status_code != 200:
-                logger.warning(
-                    "lobste.rs returned %d for source=%s page=%d",
-                    response.status_code, source, page,
-                )
-                break
-            page_stories = response.json()
-            if not page_stories:
-                break
-            stories.extend(page_stories)
+    url = f"{LOBSTERS_BASE}/{source}.json"
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(url)
+    except httpx.RequestError as e:
+        logger.error("Request to lobste.rs failed (source=%s): %s", source, e)
+        return []
 
+    if response.status_code != 200:
+        logger.warning("lobste.rs returned %d for source=%s", response.status_code, source)
+        return []
+
+    stories = response.json()
     _cache[source] = stories
     return stories
 
