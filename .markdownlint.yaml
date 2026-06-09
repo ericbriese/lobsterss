@@ -1,0 +1,4 @@
+default: true
+
+# Line length
+MD013: false

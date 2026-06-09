@@ -5,8 +5,9 @@ from typing import Annotated, Literal
 import httpx
 from cachetools import TTLCache
 from fastapi import Depends, FastAPI, HTTPException, Query
-from fastapi.responses import Response
+from fastapi.responses import HTMLResponse, Response
 
+import docs
 from feeds import build_feed
 from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE
 
@@ -82,6 +83,11 @@ async def hottest(fmt: Literal["rss", "atom"], filters: Annotated[FeedFilters, D
 @app.get("/t/{tags}.{fmt}")
 async def by_tags(tags: str, fmt: Literal["rss", "atom"], filters: Annotated[FeedFilters, Depends()]):
     return await serve_feed(f"t/{tags}", f"lobste.rs: {tags}", fmt, filters, f"{LOBSTERS_BASE}/t/{tags}")
+
+
+@app.get("/", response_class=HTMLResponse)
+async def docs_page():
+    return docs.render()
 
 
 @app.get("/healthz")
