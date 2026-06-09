@@ -5,6 +5,7 @@ lobsterss serves up customisable lobste.rs RSS feeds
 
 Todo:
 
+- [ ] Fetch multiple pages
 - [ ] Configurable search in url and desc
 - [ ] json output
 - [ ] Always link to lobste.rs comments instead of outbound link
