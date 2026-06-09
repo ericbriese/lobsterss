@@ -17,7 +17,7 @@ def iso8601(date_str: str) -> str:
 
 def author_str(story: dict) -> str:
     url = story.get("url") or ""
-    if url:
+    if url and story.get("user_is_author"):
         return f"{urlparse(url).netloc} by {story['submitter_user']}"
     return story["submitter_user"]
 
