@@ -23,8 +23,12 @@ def author_str(story: dict) -> str:
 
 
 def description(story: dict) -> str:
-    return (
+    parts = []
+    if story.get("description"):
+        parts.append(story["description"])
+    parts.append(
         f'Score: {story["score"]} | '
         f'Comments: {story["comment_count"]} | '
         f'<a href="{story["comments_url"]}">Comments</a>'
     )
+    return "\n".join(parts)
