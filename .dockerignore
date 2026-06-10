@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+.git
+.github/
+tests/
+fly.toml
+requirements-dev.txt
+ruff.toml
+.pre-commit-config.yaml
+.markdownlint.yaml
