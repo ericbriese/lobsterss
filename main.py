@@ -5,15 +5,36 @@ from typing import Annotated, Literal
 import httpx
 from cachetools import TTLCache
 from fastapi import Depends, FastAPI, HTTPException, Query
-from fastapi.responses import HTMLResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, Response
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
 
 import docs
 from feeds import build_feed
-from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE
+from settings import CACHE_MAX_SIZE, CACHE_TTL_SECONDS, LOBSTERS_BASE, RATE_LIMIT_PER_MINUTE
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
 _cache: TTLCache = TTLCache(maxsize=CACHE_MAX_SIZE, ttl=CACHE_TTL_SECONDS)
+_rate_counts: TTLCache = TTLCache(maxsize=10000, ttl=60)
+
+
+class RateLimitMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        forwarded_for = request.headers.get("X-Forwarded-For")
+        ip = (
+            forwarded_for.split(",")[0].strip()
+            if forwarded_for
+            else (request.client.host if request.client else "unknown")
+        )
+        count = _rate_counts.get(ip, 0)
+        if count >= RATE_LIMIT_PER_MINUTE:
+            return JSONResponse(status_code=429, content={"detail": "Too many requests"})
+        _rate_counts[ip] = count + 1
+        return await call_next(request)
+
+
+app.add_middleware(RateLimitMiddleware)
 
 
 @dataclass
