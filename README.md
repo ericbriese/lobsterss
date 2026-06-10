@@ -1,7 +1,7 @@
 lobsterss
 =========
 
-[lobsterss](https://lobsterss.org/) serves up customisable lobste.rs RSS feeds
+[lobsterss](https://lobsterss.org/) serves up customisable lobste.rs RSS feeds, inspired by [hnrss](https://hnrss.org/).
 
 Todo:
 
