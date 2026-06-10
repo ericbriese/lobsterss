@@ -43,7 +43,7 @@ _Operators can't currently be combined, and a maximum of 5 terms are supported._
 
 ## Examples
 
-- [`/hottest.rss?min_score=10`](/hottest.rss?min_score=10)
+- [`/hottest.rss?min_score=10&min_comments=2`](/hottest.rss?min_score=10&min_comments=2)
 - [`/newest.rss?q=AI`](/newest.rss?q=AI)
-- [`/t/rust,python.rss?q=async&min_score=5`](/t/rust,python.rss?q=async&min_score=5)
-- [`/t/programming.atom?min_comments=3`](/t/programming.atom?min_comments=3)
+- [`/t/ai.rss?q=model+OR+api&min_score=3`](/t/ai.rss?q=model+OR+api&min_score=3)
+- [`/t/programming,compsci.atom?min_comments=3`](/t/programming,compsci.atom?min_comments=3)
