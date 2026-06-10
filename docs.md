@@ -14,12 +14,12 @@ or title keyword. lobsterss adds those as query parameters on top of the standar
 
 The following feeds mirror lobste.rs's own URLs and are available in RSS (`.rss`) and Atom (`.atom`) format.
 
-| Feed          | URL                       |
-|---------------|---------------------------|
-| Hottest       | `/hottest.rss`            |
-| Newest        | `/newest.rss`             |
-| By tag        | `/t/python.rss`           |
-| Multiple tags | `/t/rust,python,java.rss` |
+| Feed                                    | URL                       |
+|-----------------------------------------|---------------------------|
+| Hottest                                 | `/hottest.rss`            |
+| Newest                                  | `/newest.rss`             |
+| By [tag](https://lobste.rs/tags)        | `/t/python.rss`           |
+| Multiple [tags](https://lobste.rs/tags) | `/t/rust,python,java.rss` |
 
 Multi-tag feeds use OR semantics - stories tagged with any of the listed tags are included.
 
